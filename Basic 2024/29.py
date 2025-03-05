@@ -1,4 +1,17 @@
-# decorators in python
+"""
+Decorator Pattern Implementation
+
+This script demonstrates:
+1. Function decorators
+2. Closure functions
+3. Decorator syntax using @
+4. Function wrapping
+5. Variable argument handling
+
+Author: Shayan Mansornia
+"""
+
+# Example of closure function (commented out)
 # def hello(name):
 #     def hello_name():
 #         print(f"Hello {name}")
@@ -7,17 +20,33 @@
 # test()
 
 def hello_decorator(func):
-    def wrapper(*args, **kwargs):
+    """
+    Decorator function that adds pre and post execution messages.
+    
+    Args:
+        func: The function to be decorated
+        
+    Returns:
+        function: Wrapped function with additional functionality
+    """
+    def wrapper(*args):
         print("hi this is before  the function")
-        func(*args, **kwargs)
+        func(*args)
         print("this is after the function")
 
     return wrapper
 
-@hello_decorator # better syntax instead of line 20
-def hello(*args, **kwargs):
+@hello_decorator  # Decorator syntax
+def hello(*args):
+    """
+    Function that prints a greeting with name and lastname.
+    
+    Args:
+        *args: Variable arguments containing name and lastname
+    """
     print(f"hello {name} {lastname}")
-# hello = hello_decorator(hello)
+
+# Get user input and demonstrate decorated function
 name = input("What is your name? ")
 lastname = input("What is your last name? ")
-hello(name,lastname)
+hello(name, lastname)

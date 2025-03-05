@@ -1,3 +1,16 @@
+"""
+Dictionary Operations and Nested Dictionaries
+
+This script demonstrates various dictionary operations in Python including:
+1. Dictionary creation and access
+2. Dictionary methods (get, keys, values, items)
+3. Dictionary modification (update, pop)
+4. Dictionary copying
+5. Nested dictionary operations
+
+Author: Shayan Mansornia
+"""
+
 # dictionary in python
 me = {
     "name": "Shayan",

@@ -1,3 +1,18 @@
+"""
+Advanced Educational System - Course Management
+
+This script demonstrates:
+1. Complex inheritance hierarchy
+2. Course management system
+3. Interactive course enrollment
+4. Course addition functionality
+5. Case-insensitive string matching
+6. List comprehension usage
+
+Author: Shayan Mansornia
+"""
+
+# Define available courses
 courses = [
     {
         "Title": "Python",
@@ -14,26 +29,72 @@ courses = [
 ]
 
 
-class User:  # Parent class
+class User:
+    """
+    Parent class representing a basic user in the system.
+    
+    Attributes:
+        firstname (str): User's first name
+        lastname (str): User's last name
+    """
+    
     def __init__(self, firstname, lastname):
+        """
+        Initialize a new user instance.
+        
+        Args:
+            firstname (str): First name
+            lastname (str): Last name
+        """
         self.firstname = firstname
         self.lastname = lastname
 
     def fullname(self):
+        """
+        Display the user's full name.
+        """
         print(f"Your name is {self.firstname} {self.lastname}")
 
 
-class Student(User):  # Child class for students
+class Student(User):
+    """
+    Child class representing a student, inheriting from User.
+    
+    Attributes:
+        email (str): Student's email address
+        courses (list): List of enrolled courses
+    """
+    
     def __init__(self, firstname, lastname, email):
+        """
+        Initialize a new student instance.
+        
+        Args:
+            firstname (str): First name
+            lastname (str): Last name
+            email (str): Email address
+        """
         super().__init__(firstname, lastname)
         self.email = email
         self.courses = []
 
     def fullname(self):
+        """
+        Override parent's fullname method to add student status.
+        """
         super().fullname()
         print("I'm a student")
 
     def choose_course(self, course_title):
+        """
+        Enroll the student in a course by title.
+        
+        Args:
+            course_title (str): Title of the course to enroll in
+            
+        Returns:
+            bool: True if enrollment successful, False otherwise
+        """
         for course in courses:
             if course["Title"].lower() == course_title.lower():  # Case-insensitive matching
                 self.courses.append(course)
@@ -42,6 +103,9 @@ class Student(User):  # Child class for students
         return False
 
     def print_courses(self):
+        """
+        Display all courses enrolled by the student.
+        """
         if self.courses:
             print("Enrolled Courses:")
             for course in self.courses:
@@ -50,16 +114,44 @@ class Student(User):  # Child class for students
             print("This student has no enrolled courses.")
 
 
-class Teacher(User):  # Child class for teachers
+class Teacher(User):
+    """
+    Child class representing a teacher, inheriting from User.
+    
+    Attributes:
+        code (int): Teacher's unique identification code
+    """
+    
     def __init__(self, firstname, lastname, code):
+        """
+        Initialize a new teacher instance.
+        
+        Args:
+            firstname (str): First name
+            lastname (str): Last name
+            code (int): Teacher's ID code
+        """
         super().__init__(firstname, lastname)
         self.code = code
 
     def fullname(self):
+        """
+        Override parent's fullname method to add teacher status.
+        """
         super().fullname()
         print("I'm a teacher")
 
     def add_course(self, course_title, teacher_name):
+        """
+        Add a new course to the system.
+        
+        Args:
+            course_title (str): Title of the new course
+            teacher_name (str): Name of the teacher for the course
+            
+        Returns:
+            bool: True if course added successfully, False otherwise
+        """
         existing_course = [course for course in courses if course["Title"].lower() == course_title.lower()]
         if existing_course:
             print(f"Course '{course_title}' already exists.")
